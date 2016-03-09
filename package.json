@@ -1,0 +1,20 @@
+{
+  "name": "webapp-jetpack",
+  "main": "./lib/webapp-jetpack",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "webapp-jetpack:open"
+  },
+  "repository": "https://github.com/atom/webapp-jetpack",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "coffee-react-dom": "0.0.5",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  }
+}

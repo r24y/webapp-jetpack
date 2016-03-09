@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle webapp-jetpack'
+      'command': 'webapp-jetpack:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'webapp-jetpack'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'webapp-jetpack:toggle'
+        }
+      ]
+    ]
+  }
+]
