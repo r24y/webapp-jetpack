@@ -16,9 +16,9 @@ class NPM extends React.Component
       npmInstalled: null
       loading: no
 
-  componentDidMount: -> @checkNodeVersion()
+  componentDidMount: -> @checkNpmVersion()
 
-  checkNodeVersion: ->
+  checkNpmVersion: ->
     this.setState
       error: null
       npmInstalled: null
@@ -44,7 +44,7 @@ class NPM extends React.Component
           success: semver.satisfies stdout, DESIRED_NPM_VERSION
           loading: no
 
-  onInstallBtnClick: => opener 'https://nodejs.org'
+  onInstallBtnClick: => @checkNpmVersion()
 
   renderVersionMessage: ->
     {npmInstalled} = @state
@@ -64,17 +64,13 @@ class NPM extends React.Component
       else
         @renderVersionMessage()
       $.p {}, [
-        'Visit '
-        $.a href: 'https://nodejs.org', 'nodejs.org'
-        ' and install version '
-        $.strong {}, '4.4.0 LTS'
-        '.'
+        'This should take care of itself if you install Node as above.'
       ]
       $.button
         className: 'btn'
         onClick: @onInstallBtnClick
       , [
-        'Install Node.js'
+        'Check again'
       ]
     ]
 
