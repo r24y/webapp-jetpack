@@ -7,14 +7,18 @@
   "activationCommands": {
     "atom-workspace": "webapp-jetpack:open"
   },
-  "repository": "https://github.com/atom/webapp-jetpack",
+  "repository": "https://github.com/r24y/webapp-jetpack",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "coffee-react-dom": "0.0.5",
+    "lodash": "^4.6.1",
+    "opener": "^1.4.1",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-font-awesome": "^1.0.3",
+    "semver": "^5.1.0",
+    "shelljs": "^0.6.0"
   }
 }

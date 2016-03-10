@@ -1,12 +1,8 @@
-$ = require('react').DOM
+React = require 'react'
+$ = React.DOM
 ReactDom = require 'react-dom'
 
-console.log
-  react: require 'react'
-  'coffee-react-dom': require 'coffee-react-dom'
-  'react-dom': require 'react-dom'
-
-
+Tasks = require './tasks'
 
 module.exports =
 class WebappJetpackView
@@ -15,26 +11,11 @@ class WebappJetpackView
     @element = document.createElement('div')
     @element.classList.add('webapp-jetpack')
 
-    # Create message element
-    message = document.createElement('div')
-    message.textContent = "The WebappJetpack package is Alive! It's ALIVE!"
-    message.classList.add('message')
-    @element.appendChild(message)
-
-    # Create React-handled element
-    container = document.createElement('div')
-    @element.appendChild(container)
-
-    console.log @
-
-    ReactDom.render @render(), container
+    ReactDom.render @render(), @element
 
   getTitle: -> 'Webapp Jetpack'
 
-  render: ->
-    $.div class: 'hello-world',
-      $.h2 class: 'react-heading', 'Hello React in Atom!'
-      $.p 'More content'
+  render: -> React.createElement Tasks
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
