@@ -97,6 +97,7 @@ class Node extends React.Component
 
   render: ->
     {nodeInstalled, success, loading} = @state
+    {seq} = @props
     headerProps =
       className: "panel-heading #{
         if nodeInstalled is null
@@ -107,14 +108,14 @@ class Node extends React.Component
           'header-success'
         }"
 
-    body = if success
-      @renderSuccessMessage()
+    if success
+      body = @renderSuccessMessage()
     else
-      @renderErrorMessage()
+      body = @renderErrorMessage()
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
-        'Install Node.js '
+        "#{seq}. Install Node.js "
         if loading
           loader 'small'
         else if success

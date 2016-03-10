@@ -77,6 +77,7 @@ class NPM extends React.Component
 
   render: ->
     {npmInstalled, success, loading} = @state
+    {seq} = @props
     headerProps =
       className: "panel-heading #{
         if npmInstalled is null
@@ -94,7 +95,7 @@ class NPM extends React.Component
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
-        'Install npm '
+        "#{seq}. Install npm "
         if loading
           loader 'small'
         else if success
