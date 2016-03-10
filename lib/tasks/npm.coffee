@@ -9,7 +9,7 @@ opener = require 'opener'
 DESIRED_NPM_VERSION = '>=3.0.0'
 
 module.exports =
-class NPM extends React.Component
+class Npm extends React.Component
   constructor: (props) ->
     super props
     this.state =
