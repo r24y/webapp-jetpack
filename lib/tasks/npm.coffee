@@ -52,7 +52,7 @@ class Npm extends React.Component
       return this.setState
         error: 'No "npm" executable found on your system!'
         loading: no
-    sh.exec "\"#{npm}\" install --global 'npm@>=3.6.0'", silent: true, (code, stdout, stderr) =>
+    sh.exec "\"#{npm}\" install --global \"npm@>=3.6.0\"", silent: true, (code, stdout, stderr) =>
       console.info stdout
       if code isnt 0
         console.error stderr
