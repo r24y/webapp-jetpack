@@ -21,7 +21,6 @@ module.exports = WebappJetpack =
     @webappJetpackView
 
   opener: (uri) ->
-    console.info uri, JETPACK_URI
     return unless uri is JETPACK_URI
     @webappJetpackView
 

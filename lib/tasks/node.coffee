@@ -26,7 +26,6 @@ class Node extends React.Component
       loading: yes
 
     node = sh.which 'node'
-    console.info node
     unless node
       return this.setState
         error: 'No "node" executable found on your system!'

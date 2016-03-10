@@ -61,7 +61,6 @@ class NpmPrefix extends React.Component
 
   checkNpmPrefix: (prefix) ->
     touchfile = path.join prefix, 'poke'
-    console.info JSON.stringify [prefix, touchfile]
     fs.writeFile touchfile, ' ', (err) =>
       if err
         console.error err
@@ -110,15 +109,8 @@ class NpmPrefix extends React.Component
       checking: yes
       doneChecking: no
 
-    # I can't think of a reason why Windows users would be unable to
-    # change their `AppData\Roaming\npm` dir (corporate policy maybe?)
-    # but there needs to be a plan in place if that happens.
-    prefix = if process.platform.match /^win/
-      path.join homeDir, 'NodeJS files', 'npm'
-    else
-      path.join homeDir, '.local', 'npm'
+    prefix = path.join homeDir, '.local', 'npm'
 
-    # Run the command.
     sh.exec "\"#{npm}\" config set prefix \"#{prefix}\"", silent: yes, (code, stdout, stderr) =>
       if code isnt 0
         return @setState

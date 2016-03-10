@@ -26,7 +26,6 @@ class Npm extends React.Component
       loading: yes
 
     npm = sh.which 'npm'
-    console.info npm
     unless npm
       return this.setState
         error: 'No "npm" executable found on your system!'
@@ -38,7 +37,6 @@ class Npm extends React.Component
           loading: no
 
       else
-        console.log stdout, DESIRED_NPM_VERSION, semver.satisfies stdout, DESIRED_NPM_VERSION
         this.setState
           npmInstalled: stdout
           success: semver.satisfies stdout, DESIRED_NPM_VERSION
@@ -49,6 +47,9 @@ class Npm extends React.Component
     @setState
       loading: yes
     sh.exec "\"npm\" install --global 'npm@>=3.6.0'", silent: true, (code, stdout, stderr) =>
+      console.info stdout
+      if code isnt 0
+        console.error stderr
       @checkNpmVersion()
 
   renderVersionMessage: ->
