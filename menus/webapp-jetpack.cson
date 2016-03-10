@@ -10,11 +10,11 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'webapp-jetpack'
+      'label': 'Webapp Jetpack'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'webapp-jetpack:toggle'
+          'label': 'Check setup'
+          'command': 'webapp-jetpack:open'
         }
       ]
     ]
