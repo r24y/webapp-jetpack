@@ -31,7 +31,7 @@ class Node extends React.Component
       return this.setState
         error: 'No "node" executable found on your system!'
         loading: no
-    sh.exec "#{node} -v", silent: yes, (code, stdout, stderr) =>
+    sh.exec "\"#{node}\" -v", silent: yes, (code, stdout, stderr) =>
       if code isnt 0
         this.setState
           error: stderr

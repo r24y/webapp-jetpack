@@ -25,13 +25,13 @@ class NPM extends React.Component
       success: no
       loading: yes
 
-    node = sh.which 'npm'
-    console.info node
-    unless node
+    npm = sh.which 'npm'
+    console.info npm
+    unless npm
       return this.setState
         error: 'No "npm" executable found on your system!'
         loading: no
-    sh.exec "#{node} -v", silent: yes, (code, stdout, stderr) =>
+    sh.exec "\"#{npm}\" -v", silent: yes, (code, stdout, stderr) =>
       if code isnt 0
         this.setState
           error: stderr
@@ -49,7 +49,7 @@ class NPM extends React.Component
   renderVersionMessage: ->
     {npmInstalled} = @state
     $.p {}, [
-      "NPM version #{npmInstalled} detected, needed #{DESIRED_NPM_VERSION}."
+      "npm version #{npmInstalled} detected, needed #{DESIRED_NPM_VERSION}."
     ]
 
   renderSuccessMessage: -> [
@@ -94,7 +94,7 @@ class NPM extends React.Component
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
-        'Install NPM '
+        'Install npm '
         if loading
           loader 'small'
         else if success
