@@ -1,7 +1,7 @@
 {
   "name": "webapp-jetpack",
   "main": "./lib/webapp-jetpack",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Get started ridiculously quickly with NPM-based web development",
   "keywords": [],
   "activationCommands": {
