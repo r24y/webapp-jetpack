@@ -45,6 +45,7 @@ class Node extends React.Component
           loading: no
 
   onInstallBtnClick: => opener 'https://nodejs.org'
+  onCheckAgainClick: => @checkNodeVersion()
 
   renderVersionMessage: ->
     {nodeInstalled} = @state
@@ -60,7 +61,11 @@ class Node extends React.Component
     {error, nodeInstalled} = @state
     [
       if error?
-        $.pre {}, error
+        [
+          $.p {}, "Error occurred while checking Node version. This usually means
+            it's not installed."
+          $.pre {}, error
+        ]
       else
         @renderVersionMessage()
       $.p {}, [
@@ -68,13 +73,24 @@ class Node extends React.Component
         $.a href: 'https://nodejs.org', 'nodejs.org'
         ' and install version '
         $.strong {}, '4.4.0 LTS'
-        '.'
+        ". Make sure you install the following when prompted:"
+        $.ul {}, [
+          $.li {}, 'Node.js runtime'
+          $.li {}, 'npm package manager'
+          $.li {}, 'Add to PATH'
+        ]
       ]
       $.button
         className: 'btn'
         onClick: @onInstallBtnClick
       , [
         'Install Node.js'
+      ]
+      $.button
+        className: 'btn'
+        onClick: @onCheckAgainClick
+      , [
+        'Check again'
       ]
     ]
 
