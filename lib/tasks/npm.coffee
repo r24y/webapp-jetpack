@@ -44,7 +44,12 @@ class Npm extends React.Component
           success: semver.satisfies stdout, DESIRED_NPM_VERSION
           loading: no
 
-  onInstallBtnClick: => @checkNpmVersion()
+  onCheckAgainClick: => @checkNpmVersion()
+  onUpdateNpmClick: =>
+    @setState
+      loading: yes
+    sh.exec "\"npm\" install --global 'npm@>=3.6.0'", silent: true, (code, stdout, stderr) =>
+      @checkNpmVersion()
 
   renderVersionMessage: ->
     {npmInstalled} = @state
@@ -66,11 +71,19 @@ class Npm extends React.Component
       $.p {}, [
         'This should take care of itself if you install Node as above.'
       ]
-      $.button
-        className: 'btn'
-        onClick: @onInstallBtnClick
-      , [
-        'Check again'
+      $.div className: 'btn-group', [
+        $.button
+          className: 'btn btn-primary'
+          onClick: @onUpdateNpmClick
+        , [
+          'Update npm'
+        ]
+        $.button
+          className: 'btn'
+          onClick: @onCheckAgainClick
+        , [
+          'Check again'
+        ]
       ]
     ]
 
