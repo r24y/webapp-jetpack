@@ -3,8 +3,8 @@ $ = React.DOM
 
 SECTION_NAMES = [
   'node'
-  'npm'
   'npm-prefix'
+  'npm'
 ]
 sections = SECTION_NAMES.map (name) -> require "./#{name}"
 

@@ -80,8 +80,8 @@ class NpmPrefix extends React.Component
 
   onCheckAgainClick: => @fetchNpmPrefix()
 
-  renderSuccessMessage: -> $.p {}, "You are now able to install Node packages
-    globally on your system."
+  renderSuccessMessage: -> $.p {}, "You are now able to install programs and
+    packages from npm to your system."
 
   renderErrorMessage: ->
     {error, npmInstalled, homeDir} = @state
@@ -105,6 +105,27 @@ class NpmPrefix extends React.Component
     ]
 
   fixPrefix: ->
+    {homeDir} = @state
+    @setState
+      checking: yes
+      doneChecking: no
+
+    # I can't think of a reason why Windows users would be unable to
+    # change their `AppData\Roaming\npm` dir (corporate policy maybe?)
+    # but there needs to be a plan in place if that happens.
+    prefix = if process.platform.match /^win/
+      path.join homeDir, 'NodeJS files', 'npm'
+    else
+      path.join homeDir, '.local', 'npm'
+
+    # Run the command.
+    sh.exec "\"#{npm}\" config set prefix \"#{prefix}\"", silent: yes, (code, stdout, stderr) =>
+      if code isnt 0
+        return @setState
+          error: stderr
+          checking: no
+          doneChecking: yes
+
 
   render: ->
     {checking, doneChecking, passed, prefix} = @state
@@ -119,16 +140,24 @@ class NpmPrefix extends React.Component
           'header-success'
         }"
 
-    body = unless prefix
-      "Checking..."
-    else if passed
-      @renderSuccessMessage()
-    else
-      @renderErrorMessage()
+    body = [
+      $.p {}, [
+        "This section makes sure you can install things you want from npm. "
+        "If you're interested, this "
+        $.a href: 'https://docs.npmjs.com/getting-started/fixing-npm-permissions', 'fixes npm permissions'
+        " by making sure you have write access to the install directory."
+      ]
+      unless prefix
+        "Checking..."
+      else if passed
+        @renderSuccessMessage()
+      else
+        @renderErrorMessage()
+    ]
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
-        "#{seq}. Fix npm global install path "
+        "#{seq}. Set up location for npm to install packages "
         if checking
           loader 'small'
         else if passed

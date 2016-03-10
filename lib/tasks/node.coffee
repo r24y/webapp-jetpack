@@ -38,9 +38,8 @@ class Node extends React.Component
           loading: no
 
       else
-        console.log stdout, DESIRED_NODE_VERSION, semver.satisfies stdout, DESIRED_NODE_VERSION
         this.setState
-          nodeInstalled: stdout
+          nodeInstalled: stdout.trim()
           success: semver.satisfies stdout, DESIRED_NODE_VERSION
           loading: no
 
@@ -48,14 +47,11 @@ class Node extends React.Component
   onCheckAgainClick: => @checkNodeVersion()
 
   renderVersionMessage: ->
-    {nodeInstalled} = @state
     $.p {}, [
-      "Node version #{nodeInstalled} detected, needed #{DESIRED_NODE_VERSION}."
+      "Node version #{@state.nodeInstalled} detected, needed #{DESIRED_NODE_VERSION}."
     ]
 
-  renderSuccessMessage: -> [
-    @renderVersionMessage()
-  ]
+  renderSuccessMessage: -> "Congrats, you have Node #{@state.nodeInstalled}!"
 
   renderErrorMessage: ->
     {error, nodeInstalled} = @state
@@ -80,17 +76,19 @@ class Node extends React.Component
           $.li {}, 'Add to PATH'
         ]
       ]
-      $.button
-        className: 'btn'
-        onClick: @onInstallBtnClick
-      , [
-        'Install Node.js'
-      ]
-      $.button
-        className: 'btn'
-        onClick: @onCheckAgainClick
-      , [
-        'Check again'
+      $.div className: 'btn-group', [
+        $.button
+          className: 'btn btn-primary'
+          onClick: @onInstallBtnClick
+        , [
+          'Install Node.js'
+        ]
+        $.button
+          className: 'btn'
+          onClick: @onCheckAgainClick
+        , [
+          'Check again'
+        ]
       ]
     ]
 

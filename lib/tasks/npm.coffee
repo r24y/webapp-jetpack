@@ -88,14 +88,24 @@ class Npm extends React.Component
           'header-success'
         }"
 
-    body = if success
-      @renderSuccessMessage()
-    else
-      @renderErrorMessage()
+    body = [
+      $.p {}, [
+        "\"npm\" is not a typo! It's supposed to be lowercase. "
+        $.a href: 'https://twitter.com/othiym23/status/707771645746749440', '(Confirmed on Twitter.)'
+      ]
+      unless npmInstalled
+        $.p {}, "npm is capable of updating itself, but first you need to
+          complete step #{seq - 1} so that it has permission to update its own
+          files."
+      else if success
+        @renderSuccessMessage()
+      else
+        @renderErrorMessage()
+    ]
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
-        "#{seq}. Install npm "
+        "#{seq}. Update to npm 3.0 "
         if loading
           loader 'small'
         else if success
