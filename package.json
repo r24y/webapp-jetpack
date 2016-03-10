@@ -2,7 +2,7 @@
   "name": "webapp-jetpack",
   "main": "./lib/webapp-jetpack",
   "version": "0.0.3",
-  "description": "A short description of your package",
+  "description": "Get started ridiculously quickly with NPM-based web development",
   "keywords": [],
   "activationCommands": {
     "atom-workspace": "webapp-jetpack:open"
@@ -17,7 +17,6 @@
     "opener": "^1.4.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-font-awesome": "^1.0.3",
     "semver": "^5.1.0",
     "shelljs": "^0.6.0"
   }
