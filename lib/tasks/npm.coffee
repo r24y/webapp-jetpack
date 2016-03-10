@@ -75,9 +75,6 @@ class Npm extends React.Component
         $.pre {}, error
       else
         @renderVersionMessage()
-      $.p {}, [
-        'This should take care of itself if you install Node as above.'
-      ]
       $.div className: 'btn-group', [
         $.button
           className: 'btn btn-primary'
@@ -109,6 +106,13 @@ class Npm extends React.Component
         }"
 
     body = [
+      $.p {}, [
+        "npm is a package manager for Node modules. If you can dream up a piece
+          of JavaScript that you need, it's probably on "
+        $.a href: 'http://npmjs.com', 'npmjs.com'
+        ". npm helps you by downloading it when you need it, with very little
+          effort on your part."
+      ]
       $.p {}, [
         "\"npm\" is not a typo! It's supposed to be lowercase. "
         $.a href: 'https://twitter.com/othiym23/status/707771645746749440', '(Confirmed on Twitter.)'

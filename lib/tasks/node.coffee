@@ -105,10 +105,14 @@ class Node extends React.Component
           'header-success'
         }"
 
-    if success
-      body = @renderSuccessMessage()
-    else
-      body = @renderErrorMessage()
+    body = [
+      $.p {}, "Node.js is the engine that drives the car, so to speak. It's the
+        runtime on top of which everything else is built."
+      if success
+        @renderSuccessMessage()
+      else
+        body = @renderErrorMessage()
+    ]
 
     $.div className: 'inset-panel', [
       $.h2 headerProps, [
